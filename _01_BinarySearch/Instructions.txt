@@ -1,0 +1,5 @@
+infi-algorithmen
+sortierter container
+	sequentiell suchen
+	binärbaum suchen { 1stes element: [1], suche dann: [2n] und {2n+1] }
+	zeit messen
