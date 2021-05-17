@@ -103,24 +103,25 @@ namespace algo::sort{
 			quick(arr, 0, arr->length());
 		}
 
-		myArray mergeTogether(myArray l, myArray r){
-			myArray outputContainer = myArray(0);
+		void mergeTogether(myArray *arr, unsigned l, unsigned m, unsigned r){
 
-			return outputContainer;
+
+
+			return;
 		}
-		myArray merge(myArray arr, unsigned l, unsigned r){
-			if(l >= r || r >= arr.length()){
-				return arr;
+		void merge(myArray *arr, unsigned l, unsigned r){
+			if(l >= r || r >= arr->length()){
+				return;
 			}
 
 			auto pivot = (l + (r-l)) / 2;
 
-			auto leftContainer = merge(arr, l, pivot);
-			auto rightContainer = merge(arr, pivot+1, r);
-			arr = mergeTogether(leftContainer, rightContainer);
+			merge(arr, l, pivot);
+			merge(arr, pivot+1, r);
+			mergeTogether(arr, l, pivot, r);
 		}
 		void merge(myArray *arr){
-			merge(*arr, 0, arr->length()-1);
+			merge(arr, 0, arr->length()-1);
 		}
 	}
 }
