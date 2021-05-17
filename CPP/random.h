@@ -5,15 +5,17 @@
 #ifndef HTL_SWP_OP_RANDOM_H
 #define HTL_SWP_OP_RANDOM_H
 
+#include "measureStuff.h"
+
 const unsigned OFFICIAL_TEST_ARRAY_LENGTH = 1000000u;
 
-int* createRandomArray(unsigned = OFFICIAL_TEST_ARRAY_LENGTH);
-int* initTestArray();
-void initRandomArray(int* destArr, unsigned destArrLength);
+myArray* createRandomArray(unsigned = OFFICIAL_TEST_ARRAY_LENGTH);
+myArray* initTestArray();
+void initRandomArray(myArray *destArr, unsigned destArrLength);
 int getRandomElement();
 int getUniqueRandomElement();
-void copyOfficialTestArray(int* destArr, int destArrLength);
+void copyOfficialTestArray(myArray *destArr, int destArrLength);
 
-const int *OFFICIAL_TEST_ARRAY = initTestArray();
+myArray *OFFICIAL_TEST_ARRAY = initTestArray();
 
 #endif //HTL_SWP_OP_RANDOM_H

@@ -21,22 +21,22 @@ int getRandomElement(){
 	return rand();
 }
 
-int* initTestArray(){
-	int arr[OFFICIAL_TEST_ARRAY_LENGTH];
+myArray* initTestArray(){
+	myArray *arr = new myArray(OFFICIAL_TEST_ARRAY_LENGTH);
 	for(int i = 0; i < OFFICIAL_TEST_ARRAY_LENGTH; ++i){
-		arr[i] = getUniqueRandomElement();
+		arr->set(i, getUniqueRandomElement());
 	}
 	return arr;
 }
 
-void initRandomArray(int* destArr, unsigned destArrLength){
+void initRandomArray(myArray *destArr, unsigned destArrLength){
 	for(int i = 0; i < destArrLength; ++i){
-		destArr[i] = rand();
+		destArr->set(i, rand());
 	}
 }
 
-void copyOfficialTestArray(int* destArr, int destArrLength){
+void copyOfficialTestArray(myArray *destArr, int destArrLength){
 	for(int i = 0; i < destArrLength; ++i){
-		destArr[i] = OFFICIAL_TEST_ARRAY[i];
+		destArr->set(i, OFFICIAL_TEST_ARRAY->get(i));
 	}
 }
