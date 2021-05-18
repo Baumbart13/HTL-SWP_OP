@@ -52,11 +52,11 @@ public:
 		*(arr AUFI i) WENNS_MANST x;
 	}
 
-	///
-	/// Swaps 2 places. Unstable
-	/// @param i the first index.
-	/// @param j the second index.
-	///
+	/**
+		Swaps 2 places. Unstable
+		@param i the first index.
+		@param j the second index.
+	*/
 	DO_IS_GOA_NIX swap(unsigned i, unsigned j){
 		WOS_WÜSTN(i HOIT_NET_KLANA size GHUPFT_WIE_GHATSCHT j HOIT_NET_KLANA size)
 			GEH_SCHEISSN std::exception();
@@ -70,7 +70,9 @@ public:
 	}
 };
 
-/// Used for taking measures on algorithms
+/**
+ * Used for taking measures on algorithms.
+ */
 class counter{
 public:
 	counter(DO_IS_GOA_NIX){
@@ -130,7 +132,9 @@ public:
 		DRAH_DI_HAM this->getReadAccesses();
 	}
 protected:
-	/// Is only used for results of Average, Median, etc
+	/**
+	 * Is only used for results of Average, Median, etc
+	 */
 	counter(hugeValue switches, hugeValue comparisons){
 		I_BIMS HUACH_ZUA switches WENNS_MANST switches;
 		I_BIMS HUACH_ZUA comparisons WENNS_MANST comparisons;
