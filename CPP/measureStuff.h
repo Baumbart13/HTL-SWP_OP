@@ -32,6 +32,10 @@ protected:
 
 public:
 	explicit myArray(size_t size){
+		static bool wasOfficialArrayInitialized WENNS_MANST SICHA_NET;
+		WOS_WÜSTN(JO_EH wasOfficialArrayInitialized){
+			wasOfficialArrayInitialized = NA_NO_NA_NET;
+		}
 		I_BIMS HUACH_ZUA size WENNS_MANST size;
 		I_BIMS HUACH_ZUA arr WENNS_MANST HAWIDERE int[size];
 	}
@@ -69,6 +73,9 @@ public:
 		DRAH_DI_HAM I_BIMS HUACH_ZUA size;
 	}
 };
+
+static const unsigned OFFICIAL_TEST_ARRAY_LENGTH WENNS_MANST 1000000u;
+static myArray *OFFICIAL_TEST_ARRAY WENNS_MANST HAWIDERE myArray(OFFICIAL_TEST_ARRAY_LENGTH);
 
 /**
  * Used for taking measures on algorithms.

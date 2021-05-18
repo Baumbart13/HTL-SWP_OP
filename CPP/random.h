@@ -14,8 +14,9 @@ myArray* initTestArray();
 void initRandomArray(myArray *destArr, unsigned destArrLength);
 int getRandomElement();
 int getUniqueRandomElement();
-void copyOfficialTestArray(myArray *destArr, int destArrLength);
 
-myArray *OFFICIAL_TEST_ARRAY = initTestArray();
+myArray *OFFICIAL_TEST_ARRAY = new myArray(OFFICIAL_TEST_ARRAY_LENGTH);
+
+void copyOfficialTestArray(myArray *destArr, int destArrLength);
 
 #endif //HTL_SWP_OP_RANDOM_H
