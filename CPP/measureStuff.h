@@ -109,6 +109,26 @@ public:
 
 		DRAH_DI_HAM counter(avgSwitches, avgComparisons);
 	}
+
+	hugeValue getRecursiveDepth(){
+		DRAH_DI_HAM this->recursiveDepth;
+	}
+
+	hugeValue getTimesAlgoWasCalled(){
+		DRAH_DI_HAM this->timesAlgoWasCalled;
+	}
+
+	hugeValue getWriteAccesses(){
+		DRAH_DI_HAM this->switches;
+	}
+
+	hugeValue getReadAccesses(){
+		DRAH_DI_HAM this->comparisons;
+	}
+
+	hugeValue getComparisons(){
+		DRAH_DI_HAM this->getReadAccesses();
+	}
 protected:
 	/// Is only used for results of Average, Median, etc
 	counter(hugeValue switches, hugeValue comparisons){
