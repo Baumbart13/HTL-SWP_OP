@@ -5,9 +5,6 @@
 * [x] Rekursion
 * Suchen (Binärbaum)
 * Sortieren-Sortierungsverfahren
-#### Datenstrukturen
-* [ ] einfach verkettete Liste
-* [ ] doppelt verkettete Liste
 
 ##### Viel Programmieren!
 
