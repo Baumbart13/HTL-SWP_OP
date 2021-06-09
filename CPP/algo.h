@@ -35,8 +35,14 @@ namespace algo::search {
 	signed int linear(myArray arr, int searchFor);
 	signed int linear(myArray arr, int searchFor, counter *c);
 
-	signed int binary(myArray arr, int searchFor);
-	signed int binary(myArray arr, int searchFor, counter *c);
+	signed int doublyLinear(myArray arr, int searchFor);
+	signed int doublyLinear(myArray arr, int searchFor, counter *c);
+
+	signed int quadrupleLinear(myArray arr, int searchFor);
+	signed int quadrupleLinear(myArray arr, int searchFor, counter *c);
+
+	signed int binary(myArray &arr, int searchFor);
+	signed int binary(myArray &arr, int searchFor, counter *c);
 
 	namespace recursive {
 		signed int binary(myArray arr, int searchFor, unsigned int lEnd, unsigned int rEnd);
@@ -45,14 +51,15 @@ namespace algo::search {
 }
 
 namespace algo::miscellaneous{
-	int faculty(int x);
-	int sumFunction(int x);
 	int pow(int x, int y);
+	int pow(int x, int y, counter *c);
 
 	namespace recursive{
 		int faculty(int x);
+		int faculty(int x, counter *c);
+
 		int sumFunction(int x);
-		int pow(int x, int y);
+		int sumFunction(int x, counter *c);
 	}
 }
 

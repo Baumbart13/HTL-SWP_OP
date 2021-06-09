@@ -8,25 +8,20 @@
 #endif
 
 namespace algo::miscellaneous{
-	int faculty(int x){
-		// TODO: implement <code>int algo::miscellaneous::faculty(int)</code>
-	}
-	int sumFunction(int x){
-		// TODO: implement <code>int algo::miscellaneous::sumFunction(int)</code>
-	}
 	int pow(int a, int b){
-		// TODO: implement <code>int algo::miscellaneous::pow(int,int)</code>
+		int out = 0;
+		for(int i = 0; i < b; ++i){
+			out += a*b;
+		}
+		return out;
 	}
 
 	namespace recursive{
 		int faculty(int x){
-			// TODO: implement <code>int algo::miscellaneous::recursive::faculty(int)</code>
+			return (x>1) ? (x*faculty(x-1)) : 1;
 		}
 		int sumFunction(int x){
-			// TODO: implement <code>int algo::miscellaneous::recursive::sumFunction(int)</code>
-		}
-		int pow(int a, int b){
-			// TODO: implement <code>int algo::miscellaneous::recursive::pow(int,int)</code>
+			return (x>=1) ? (x+sumFunction(x-1)) : 0;
 		}
 	}
 }

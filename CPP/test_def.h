@@ -12,8 +12,5 @@ extern void printSelectionScreen_Other();
 
 extern void printSelectionScreen_BinarySearch();
 extern void printSelectionScreen_SelectionSort();
-extern void printSelectionScreen_FacultyMisc();
-extern void printSelectionScreen_SumfunctionMisc();
-extern void printSelectionScreen_PowMisc();
 
 #endif //HTL_SWP_OP_TEST_DEF_H

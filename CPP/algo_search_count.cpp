@@ -9,7 +9,7 @@
 
 namespace algo::search{
 
-	namespace algo::recursive{
+	namespace recursive{
 		/// A recursive binary search on a sorted container.
 		/// @returns the index of the element. <code>-1</code> if it is not inside the container.
 		signed int binary(myArray arr, int searchFor, unsigned int lEnd, unsigned int rEnd, counter *c){
@@ -55,7 +55,7 @@ namespace algo::search{
 	}
 	/// A binary search on a sorted container.
 	/// @returns the index of the element. <code>-1</code> if it is not inside the container.
-	signed int binary(myArray arr, int searchFor, counter *c){
+	signed int binary(myArray &arr, int searchFor, counter *c){
 
 		c->increaseWrites(2);
 		int	left = 0,
@@ -106,6 +106,74 @@ namespace algo::search{
 			c->increaseComparisons();
 		}
 		// Not found
+		return -1;
+	}
+
+	signed int doublyLinear(myArray arr, int searchFor, counter *c){
+
+		// simple double sided sequentialSearch, just to make sure there is definitely the value inside
+		c->increaseWrites(2);
+		int lowerIndex = 0;
+		int upperIndex = arr.length()-1;
+
+		c->increaseComparisons();
+		while(lowerIndex <= upperIndex){
+			c->increaseComparisons();
+			if(arr.get(lowerIndex) == searchFor){
+				return lowerIndex;
+			}
+			c->increaseComparisons();
+			if(arr.get(upperIndex) == searchFor){
+				return upperIndex;
+			}
+			c->increaseWrites(2);
+			++lowerIndex;
+			--upperIndex;
+			c->increaseComparisons();
+		}
+		return -1;
+	}
+
+	signed int quadrupleLinear(myArray arr, int searchFor, counter *c){
+		c->increaseWrites(4);
+
+		// one index starts from the lower end
+		int llIndex = 0;
+		// one index starts from the upper end
+		int rrIndex = arr.length()-1;
+		// one index starts from the middle and goes downwards
+		int mlIndex = arr.length()/2;
+		// one index starts from the middle and goes upwards
+		int mrIndex = arr.length()/2;
+
+		c->increaseComparisons(2);
+		while(llIndex <= mlIndex &&
+			  rrIndex >= mrIndex){
+			c->increaseComparisons();
+			if(arr.get(llIndex) == searchFor){
+				return llIndex;
+			}
+			c->increaseComparisons();
+			if(arr.get(rrIndex) == searchFor){
+				return rrIndex;
+			}
+			c->increaseComparisons();
+			if(arr.get(mlIndex) == searchFor){
+				return mlIndex;
+			}
+			c->increaseComparisons();
+			if(arr.get(mrIndex) == searchFor){
+				return mrIndex;
+			}
+
+			c->increaseWrites(4);
+			++llIndex;
+			--rrIndex;
+			--mlIndex;
+			++mrIndex;
+			c->increaseComparisons(2);
+		}
+
 		return -1;
 	}
 }

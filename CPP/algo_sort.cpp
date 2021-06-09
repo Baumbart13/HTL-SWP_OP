@@ -3,12 +3,13 @@
 //
 
 #include "algo.h"
+#include <iostream>
 //#ifndef ALGOS_MEASURESTUFF_H
 #include "measureStuff.h"
 //#endif
 
 namespace algo::sort{
-	namespace algo::stable{
+	namespace stable{
 		void selection(myArray *arr){
 			for(hugeValue i = 0; i < arr->length(); ++i){
 
@@ -74,54 +75,125 @@ namespace algo::sort{
 
 	namespace recursive {
 		unsigned quickPartition(myArray *arr, const unsigned l, const unsigned r) {
-			auto i = l;
-			auto j = r - 1;
-			auto pivot = r;
+			auto lIndex = l;
+			auto rIndex = r - 1;
+			auto pivot = arr->get(r);
 
-			while (i < j) {
-				while (i < r && arr->get(i) < arr->get(pivot))
-					++i;
-				while (j > l && arr->get(j) >= arr->get(pivot))
-					--j;
-				if (i < j)
-					arr->swap(i, j);
+			while (lIndex < rIndex) {
+				while (lIndex < r && arr->get(lIndex) < pivot)
+					++lIndex;
+				while (rIndex > l && arr->get(rIndex) >= pivot)
+					--rIndex;
+				if (lIndex < rIndex)
+					arr->swap(lIndex, rIndex);
 			}
-			if (arr->get(i) > arr->get(pivot))
-				arr->swap(i, r);
-			return i;
+			if (arr->get(lIndex) > pivot)
+				arr->swap(lIndex, r);
+			return lIndex;
 		}
 
 		void quick(myArray *arr, unsigned low, unsigned high) {
-			if (high <= low || abs((signed) high - (signed) low) <= 1)
+			if(low >= high){
 				return;
+			}
 
 			auto pivot = quickPartition(arr, low, high);
 			quick(arr, low, pivot - 1);
 			quick(arr, pivot + 1, high);
 		}
 		void quick(myArray *arr){
-			quick(arr, 0, arr->length());
+			quick(arr, 0, arr->length()-1);
 		}
 
-		void mergeTogether(myArray *arr, unsigned l, unsigned m, unsigned r){
+		void mergeTogether(myArray *arr, unsigned l, unsigned r) {
 
+			const auto middle = (l + (r - l)) / 2;
 
+			// copy lower half to new temporary array
+			auto lowerArrSize = middle - l + 1;
+			auto lowerArr = new myArray(lowerArrSize);
+			for (unsigned i = 0; i < lowerArrSize; ++i) {
+				lowerArr->set(i, arr->get(l + i));
+			}
+
+			// copy upper half to new temporary array
+			auto upperArrSize = r - middle;
+			auto upperArr = new myArray(upperArrSize);
+			for (unsigned i = 0; i < upperArrSize; ++i) {
+				upperArr->set(i, arr->get(middle + i + 1));
+			}
+
+			// create indices for merging
+			unsigned lowerArrIndex = 0, upperArrIndex = 0, resultsArrIndex = l;
+
+			// merge all together
+			//   lowerArrIndex can't be greater equals than underArrSize
+			//   upperArrIndex can't be greater equals than upperArrSize
+			//   resultsArrIndex can't be less than l
+			//   resultsArrIndex can't be greater equals than r
+			// if EITHER the upper array is done OR the lower array is done, then go for the next step where the
+			// resuming parts of the counterpart is getting inserted
+			while (lowerArrIndex < lowerArrSize && upperArrIndex < upperArrSize) {
+				auto lowerElement = (lowerArr->get(lowerArrIndex)); // just for comparison!!!
+				auto upperElement = (upperArr->get(upperArrIndex)); // just for comparison!!!
+
+				if (lowerElement <= upperElement) {
+					arr->set(resultsArrIndex++, lowerArr->get(lowerArrIndex++));
+				} else {
+					arr->set(resultsArrIndex++, upperArr->get(upperArrIndex++));
+				}
+			}
+
+			// one temporary array was inserted completely, the other one has elements left in it
+			// (even if it is only 1 element) just copy the resuming elements to the resulting
+
+			// if lower array is done, then the upper can't be the same as the upperSize and therefore we
+			// copy the resuming values from the upper one to the resulting
+			// it won't execute the while, if the upper one is done and the lower is not
+			while (upperArrIndex < upperArrSize) {
+				arr->set(resultsArrIndex++, upperArr->get(upperArrIndex++));
+			}
+
+			// if upper array is done, then the lower can't be the same as the lowerSize and therefore we
+			// copy the resuming values from the lower one to the resulting
+			// it won't execute the while, if the lower one is done and the upper is not
+			while (lowerArrIndex < lowerArrSize) {
+				arr->set(resultsArrIndex++, lowerArr->get(lowerArrIndex++));
+			}
+
+			// everything is merged together as it should be
+			// so let's clean up all the mess we made up before and then return out of here
+			delete lowerArr;
+			delete upperArr;
+			// unfortunately we cannot delete the extra variables, because they are not pointers (yet, hehe)
+			//delete middle;
+			//delete lowerArrSize;
+			//delete lowerArrIndex;
+			//delete upperArrSize;
+			//delete upperArrIndex;
+			//delete resultsArrIndex;
 
 			return;
 		}
-		void merge(myArray *arr, unsigned l, unsigned r){
-			if(l >= r || r >= arr->length()){
+
+		void merge(myArray *arr, unsigned l, unsigned r) {
+			if (l >= r || r >= arr->length()) {
 				return;
 			}
 
-			auto pivot = (l + (r-l)) / 2;
+			// make the pivot element as the middle one
+			auto pivot = (l + (r - l)) / 2;
 
+			// first mergeSort the lower half
 			merge(arr, l, pivot);
-			merge(arr, pivot+1, r);
-			mergeTogether(arr, l, pivot, r);
+			// second, mergeSort the upper half
+			merge(arr, pivot + 1, r);
+			// and finally merge lower and upper half together
+			mergeTogether(arr, l, r);
 		}
-		void merge(myArray *arr){
-			merge(arr, 0, arr->length()-1);
+
+		void merge(myArray *arr) {
+			merge(arr, 0, arr->length() - 1);
 		}
 	}
 }

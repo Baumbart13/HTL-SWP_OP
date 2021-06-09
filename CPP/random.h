@@ -7,16 +7,15 @@
 
 #include "measureStuff.h"
 
-const unsigned OFFICIAL_TEST_ARRAY_LENGTH = 1000000u;
-
 myArray* createRandomArray(unsigned = OFFICIAL_TEST_ARRAY_LENGTH);
 myArray* initTestArray();
+void initRandomArray(myArray *destArr);
 void initRandomArray(myArray *destArr, unsigned destArrLength);
+void initSortedArray(myArray *destArr);
+void initSortedArray(myArray *destArr, unsigned destArrLength);
 int getRandomElement();
 int getUniqueRandomElement();
-
-myArray *OFFICIAL_TEST_ARRAY = new myArray(OFFICIAL_TEST_ARRAY_LENGTH);
-
-void copyOfficialTestArray(myArray *destArr, int destArrLength);
+void copyOfficialTestArray(myArray *destArr);
+void copyOfficialTestArray(myArray *destArr, unsigned destArrLength);
 
 #endif //HTL_SWP_OP_RANDOM_H

@@ -6,7 +6,7 @@
 #include <vector>
 
 int getUniqueRandomElement(){
-	static std::vector<int> usedValues = std::vector<int>(1);
+	static auto usedValues = std::vector<int>(1);
 
 	int randomElement = 0;
 	do{
@@ -29,13 +29,24 @@ myArray* initTestArray(){
 	return arr;
 }
 
+void initSortedArray(myArray *destArr){ initSortedArray(destArr, destArr->length()); }
+void initSortedArray(myArray *destArr, unsigned destArrLength){
+	for(int i = 0; i < destArrLength; ++i){
+		destArr->set(i, rand() % (i<<1));
+	}
+	destArr->sort();
+}
+
+void initRandomArray(myArray *destArr){ initRandomArray(destArr, destArr->length()); }
 void initRandomArray(myArray *destArr, unsigned destArrLength){
 	for(int i = 0; i < destArrLength; ++i){
 		destArr->set(i, rand());
 	}
 }
 
-void copyOfficialTestArray(myArray *destArr, int destArrLength){
+void copyOfficialTestArray(myArray *destArr){ copyOfficialTestArray(destArr, destArr->length()); }
+
+void copyOfficialTestArray(myArray *destArr, unsigned destArrLength){
 	for(int i = 0; i < destArrLength; ++i){
 		destArr->set(i, OFFICIAL_TEST_ARRAY->get(i));
 	}
