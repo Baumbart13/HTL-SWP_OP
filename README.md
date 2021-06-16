@@ -74,6 +74,7 @@
 ![Zeilen Code](https://img.shields.io/tokei/lines/github/Baumbart13/HTL-SWP_OP)
 ![Repository Größe](https://img.shields.io/github/repo-size/Baumbart13/HTL-SWP_OP)
 ![Letzter Commit](https://img.shields.io/github/last-commit/Baumbart13/HTL-SWP_OP)
-\For reference linux kernel:\
+
+For reference linux kernel:\
 ![Zeilen Code](https://img.shields.io/tokei/lines/github/torvalds/linux)
 ![Repository Größe](https://img.shields.io/github/repo-size/torvalds/linux)
