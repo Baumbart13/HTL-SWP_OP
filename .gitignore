@@ -264,3 +264,28 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# User defined
+.clion/**/workspace.xml
+.clion/**/tasks.xml
+.clion/**/usage.statistics.xml
+.clion/**/dictionaries
+.clion/**/shelf
+.clion/**/contentModel.xml
+.clion/**/dataSources/
+.clion/**/dataSources.ids
+.clion/**/dataSources.local.xml
+.clion/**/sqlDataSources.xml
+.clion/**/dynamic.xml
+.clion/**/uiDesigner.xml
+.clion/**/dbnavigator.xml
+.clion/**/gradle.xml
+.clion/**/libraries
+# .clion/artifacts
+# .clion/compiler.xml
+# .clion/jarRepositories.xml
+# .clion/modules.xml
+# .clion/*.iml
+# .clion/modules
+.clion/replstate.xml
+.clion/httpRequests
+.clion/caches/build_file_checksums.ser
